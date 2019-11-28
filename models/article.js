@@ -14,6 +14,14 @@ var ArticleSchema = new Schema({
     comment: {
         type: Schema.Types.ObjectId,
         ref: "Comment"
+    },
+    favourite: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    img: {
+        type: String
     }
 });
 

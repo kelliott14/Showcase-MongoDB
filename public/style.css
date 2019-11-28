@@ -1,0 +1,42 @@
+body{
+    background-color: white;
+}
+
+a{
+    text-decoration: none;
+}
+
+.favSlider{
+    background-color: #1CAD43;
+    border-radius: 6px;
+    padding-bottom: 1rem;
+}
+
+.icon{
+    width: 2rem;
+}
+
+.eachArticle{
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: #ed2527;
+    margin: 1rem;
+    height: 10rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.articleHeader{
+    text-decoration: none;
+    margin-left: 0.5rem;
+    color: black;
+    margin-top: 0.2rem;
+}
+
+.articleImg{
+    height: 100%;
+    top: 0;
+    float: left;
+    margin-right: 0.5rem;
+}
+

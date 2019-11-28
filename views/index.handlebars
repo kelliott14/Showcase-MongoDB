@@ -1,6 +1,37 @@
 <div>
+    <div class="favSlider">
+        <span><img src="arrowIcon.png" class="icon"> </span>
+        <div>
+            <h3 class="articleHeader">Saved Favs</h3>
+            <div class="favArticles">
+                {{#each articles}}
+                    {{#if favourite}}
+                <div class="eachArticle">
+                    <a href="{{link}}" target="_blank"> <h3 class="articleHeader">{{title}}</h3></a>
+                    <img class="articleImg" src={{img}}>
+                    <span><img src="fullHeartIcon.png" class="icon"></span>
+                    <span><img src="commentIcon.png" class="icon"></span>
+                </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+    <div>
     {{#each articles}}
-    <h1>{{title}}</h1>
+        {{#unless favourite}}
+    <div class="eachArticle">
+        <img class="articleImg" src={{img}}>
+        <div class="nonImg">
+            <a href="{{link}}" target="_blank"> <h3 class="articleHeader">{{title}}</h3></a>
+            <span><img src="emptyHeartIcon.png" class="icon"></span>
+            <span><img src="commentIcon.png" class="icon"></span>
+        </div>
+    </div>
+    {{/unless}}
     {{/each}}
+
+    </div>
 </div>
 

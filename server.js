@@ -26,19 +26,21 @@ app.get("/scrap", function(req, res) {
     axios.get("https://www.betootaadvocate.com/").then(function(response) {
         var $ = cheerio.load(response.data);
         
-        $(".td_module_wrap h3").each(function(i, element) {
+        $(".td-module-thumb").each(function(i, element) {
             var result = {};
             result.title = $(this).children("a").attr("title");
             result.link = $(this).children("a").attr("href");
+            result.img = $(this).children().children("img").attr("src");
 
             db.Article.create(result).then(function(dbArticle) {
                 console.log(dbArticle);
             }).catch(function(err) {
                 console.log(err)
             });
-        });
 
-        console.log("Scrape completed")
+        });
+        
+        res.send("Scrape completed")
     });
 });
 
@@ -51,7 +53,6 @@ app.get("/articles", function(req, res) {
                 articles: results
             }
             res.render("index", allArticles);
-            console.log(allArticles)
         }
     });
 });
