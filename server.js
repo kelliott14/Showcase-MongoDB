@@ -62,16 +62,20 @@ app.get("/articles/:id", function(req, res) {
 });
 
 app.post("articles/:id", function(req, res) {
-    db.Comment.create(req.body).then(function(dbNote) {
+    db.Comment.create(req.body).then(function(dbComment) {
         return db.Article.findByIdAndUpdate(
             {
                 _id: req.params.id
             },
-            { comment: dbNote.id },
+            { comment: dbComment.id },
             { new: true }
-        )
-    })
-})
+        ).then(function(dbArticle) {
+            res.json(dbArticle)
+        }).catch(function(err) {
+            res.json(err)
+        });
+    });
+});
 
 app.listen(PORT, function() {
     console.log("App running on port " + PORT);
