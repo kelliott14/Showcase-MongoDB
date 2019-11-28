@@ -1,8 +1,8 @@
 var express = require("express");
-var logger = require("morgan");
 var mongoose = require("mongoose");
 var axios = require("axios");
 var cheerio = require("cheerio");
+var exphbs = require("express-handlebars")
 
 var db = require("./models");
 
@@ -10,10 +10,13 @@ var PORT = process.env.PORT || 4000;
 
 var app = express();
 
-app.use(logger("dev"));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
+
+app.engine("handlebars", exphbs({ defaultLayout: "main"}));
+app.set("view engine", "handlebars");
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/unit18homework";
 
@@ -44,7 +47,11 @@ app.get("/articles", function(req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.json(results);
+            var allArticles = {
+                articles: results
+            }
+            res.render("index", allArticles);
+            console.log(allArticles)
         }
     });
 });
