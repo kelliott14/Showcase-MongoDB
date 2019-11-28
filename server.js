@@ -85,6 +85,29 @@ app.post("articles/:id", function(req, res) {
     });
 });
 
+app.put("/articles/:currentState/:id", function(req, res) {
+    var favouriteState
+    if (req.params.currentState == "true"){
+        favouriteState = false
+    }else{
+        favouriteState = true
+    }
+    db.Article.update(
+        { _id: req.params.id },
+        { $set: {
+            favourite: favouriteState
+            }
+        },
+    function(err, results) {
+        if (err) {
+            console.log(err)
+        }else {
+            res.json(results)
+        }
+    }
+    )
+});
+
 app.listen(PORT, function() {
     console.log("App running on port " + PORT);
 })
