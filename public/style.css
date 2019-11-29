@@ -15,6 +15,7 @@ a{
 
 .icon{
     width: 2rem;
+    cursor: pointer;
 }
 
 .eachArticle{
@@ -50,14 +51,14 @@ a{
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: beige;
-    background-color: black 0.4; 
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4); 
 }
 
 .modal-content {
-    background-color: #fefe;
+    background-color: #ECA7CB;
     margin: 15% auto;
-    padding: 3rem;
+    padding: 0.5rem 1rem 1rem 1rem;
     border: 1px solid black;
     width: 80%;
 }
@@ -74,4 +75,13 @@ a{
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+#commentText {
+    width: 100%;
+    height: 5rem;
+}
+
+#commenterName {
+    width: 100%;
 }

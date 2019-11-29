@@ -24,9 +24,52 @@ $(document).ready(function() {
 
     $(".commentIcon").on("click", function() {
         $(".modal").css({"display":"block"});
+        var id = $(this).attr("id");
+        $(".commentForm").attr("id", id);
+        $(".currentComments").empty();
+        $.ajax({
+            method: "GET",
+            url: "/articles/" + id
+        }).then(function(data) {
+            console.log(data);
+            // data.forEach(function(item) {
+            //     var eachComment = $("<p>" + item.body + "</p>");
+            //     var eachName = $("<h4>" + item.name + "</h4>");
+            //     $(".currentComments").append(eachComment + eachName);
+            // });
+        });
     });
 
     $(".close").on("click", function() {
         $(".modal").css({"display":"none"});
     });
+
+    $(".commentForm").submit(function(e) {
+        var id = $(".commentForm").attr("id")
+        $.ajax({
+            method: "POST",
+            url: "/articles/" + id,
+            data: {
+                name: $("#commenterName").val().trim(),
+                body: $("#commentText").val().trim()
+            }
+        }).then(function(results) {
+            $(".currentComments").empty();
+            $.ajax({
+                method: "GET",
+                url: "/articles/" + id
+            }).then(function(data) {
+                console.log(data);
+                // data.forEach(function(item) {
+                //     var eachComment = $("<p>" + item.body + "</p>");
+                //     var eachName = $("<h4>" + item.name + "</h4>");
+                //     $(".currentComments").append(eachComment + eachName);
+                // });
+            });
+        })
+        e.preventDefault()
+    });
+
+
+    
 });
