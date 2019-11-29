@@ -11,6 +11,11 @@ Use the `<3` to toggle the article from favourite to unfavourited.
 Use the `Q` to view the comments available on that article. In the comment modal, comments are visible, can be deleted and new comments can be added.
 
 # Technologies Used
+- Concepts
+  * Web scraping
+  * NoSQL database
+  * RESTful API Web Services
+  * Heroku deployment
 - Front-end
   * HTML
   * CSS
