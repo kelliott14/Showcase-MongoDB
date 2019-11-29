@@ -22,25 +22,33 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/unit18homework
 
 mongoose.connect(MONGODB_URI);
 
-app.get("/scrap", function(req, res) {
-    axios.get("https://www.betootaadvocate.com/").then(function(response) {
+app.get("/scrape", function(req, res) {
+    axios.get("https://www.betootaadvocate.com/category/breaking-news/").then(function(response) {
         var $ = cheerio.load(response.data);
         
-        $(".td-module-thumb").each(function(i, element) {
+        $(".td_module_12").each(function(i, element) {
             var result = {};
-            result.title = $(this).children("a").attr("title");
-            result.link = $(this).children("a").attr("href");
-            result.img = $(this).children().children("img").attr("src");
+            result.title = $(this).children().find(".td-module-thumb").children("a").attr("title");
+            result.link = $(this).children().find(".td-module-thumb").children("a").attr("href");
+            result.img = $(this).children().find(".td-module-thumb").children("a").children("img").attr("src");
 
-            db.Article.create(result).then(function(dbArticle) {
-                console.log(dbArticle);
-            }).catch(function(err) {
-                console.log(err)
+            db.Article.find({title: result.title}).then(function(results) {
+                if (results == "") {
+                    db.Article.create(result).then(function(dbArticle) {
+                        console.log(dbArticle);
+                    }).catch(function(err) {
+                        console.log(err)
+                    });
+                }else {
+                    console.log("Already saved.")
+                }
             });
-
+            
         });
         
-        res.send("Scrape completed")
+        console.log("Scrape completed")
+        res.redirect("/");
+        console.log("redirected")
     });
 });
 

@@ -100,5 +100,14 @@ $(document).ready(function() {
         });
     });
 
-    
+    $("#scrapeButton").on("click", function() {
+        $(".articleHeader").append("<h4>Scrape is loading...</h4>")
+        $.ajax({
+            method: "GET",
+            url: "/scrape"
+        }).then(function(data) {
+            location.reload();
+        })
+    })
+
 });

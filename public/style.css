@@ -25,7 +25,7 @@ a{
     background-color: rgba(89,132,209, 0.2);
     border-radius: 6px;
     margin: 1rem;
-    height: 6rem;
+    height: 10rem;
     position: relative;
     overflow: hidden;
 }
@@ -119,4 +119,10 @@ input{
 textarea:focus,
 input:focus {
     border-radius: 6px;
+}
+
+#scrapeButton {
+    font-size: 16px;
+    margin-left: 1rem;
+    padding: 0.75rem;
 }

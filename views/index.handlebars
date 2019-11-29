@@ -3,6 +3,7 @@
         <span><img src="arrowIcon.png" class="icon collapseIcon"> </span>
         <div class="favBox" visible-status="show">
             <h3 class="articleHeader">Saved Favs</h3>
+            
             <div>
                 {{#each articles}}
                     {{#if favourite}}
@@ -17,6 +18,7 @@
                     {{/if}}
                 {{/each}}
             </div>
+            <button class="modalButton" id="scrapeButton">Scrape for more</button>
         </div>
     </div>
 
