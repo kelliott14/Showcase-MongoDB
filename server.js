@@ -44,7 +44,7 @@ app.get("/scrap", function(req, res) {
     });
 });
 
-app.get("/articles", function(req, res) {
+app.get("/", function(req, res) {
     db.Article.find({}, function(err, results) {
         if (err) {
             console.log(err);

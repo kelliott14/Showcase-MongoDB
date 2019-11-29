@@ -21,4 +21,12 @@ $(document).ready(function() {
             $(".collapseIcon").css({"transform": "rotate(0deg)"});
         }
     });
+
+    $(".commentIcon").on("click", function() {
+        $(".modal").css({"display":"block"});
+    });
+
+    $(".close").on("click", function() {
+        $(".modal").css({"display":"none"});
+    });
 });
