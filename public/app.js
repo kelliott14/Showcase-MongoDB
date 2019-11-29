@@ -33,9 +33,9 @@ $(document).ready(function() {
         }).then(function(data) {
             data.comment.forEach(function(item) {
                 var eachComment = $("<div class='eachComment'>")
-                eachComment.append("<button class='deleteComment' id=" + item._id + ">Delete</button>");
-                eachComment.append("<p>" + item.body + "</p>");
-                eachComment.append("<h4>" + item.name + "</h4>");
+                eachComment.append("<button class='deleteComment modalButton' id=" + item._id + ">Delete</button>");
+                eachComment.append('<p>"' + item.body + '"</p>');
+                eachComment.append("<h4>Comment by:  " + item.name + "</h4>");
                 $(".currentComments").append(eachComment);
             });
         });
@@ -62,9 +62,9 @@ $(document).ready(function() {
             }).then(function(data) {
                 data.comment.forEach(function(item) {
                     var eachComment = $("<div class='eachComment'>")
-                    eachComment.append("<button class='deleteComment' id=" + item._id + ">Delete</button>");
-                    eachComment.append("<p>" + item.body + "</p>");
-                    eachComment.append("<h4>" + item.name + "</h4>");
+                    eachComment.append("<button class='deleteComment modalButton' id=" + item._id + ">Delete</button>");
+                    eachComment.append('<p>"' + item.body + '"</p>');
+                    eachComment.append("<h4>Comment by:  " + item.name + "</h4>");  
                     $(".currentComments").append(eachComment);
                     $("#commenterName").val("");
                     $("#commentText").val("");
@@ -89,9 +89,9 @@ $(document).ready(function() {
             }).then(function(data) {
                 data.comment.forEach(function(item) {
                     var eachComment = $("<div class='eachComment'>")
-                    eachComment.append("<button class='deleteComment' id=" + item._id + ">Delete</button>");
-                    eachComment.append("<p>" + item.body + "</p>");
-                    eachComment.append("<h4>" + item.name + "</h4>");
+                    eachComment.append("<button class='deleteComment modalButton' id=" + item._id + ">Delete</button>");
+                    eachComment.append('<p>"' + item.body + '"</p>');
+                    eachComment.append("<h4>Comment by:  " + item.name + "</h4>");
                     $(".currentComments").append(eachComment);
                     $("#commenterName").val("");
                     $("#commentText").val("");
