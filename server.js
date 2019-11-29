@@ -71,7 +71,6 @@ app.get("/articles/:id", function(req, res) {
 
 app.post("/submit/:id", function(req, res) {
     db.Comment.create(req.body).then(function(dbComment) {
-        console.log(dbComment)
         return db.Article.findOneAndUpdate(
             {_id: req.params.id},
             { $push: {
@@ -79,7 +78,6 @@ app.post("/submit/:id", function(req, res) {
             },
             {new: true}
         ).then(function(dbArticle) {
-            console.log(dbArticle)
             res.json(dbArticle)
         }).catch(function(err) {
             res.json(err)
@@ -109,6 +107,14 @@ app.put("/articles/:currentState/:id", function(req, res) {
     }
     )
 });
+
+app.delete("/comment/:id", function(req, res) {
+    db.Comment.findByIdAndDelete(
+        {_id: req.params.id}
+    ).then(function(data) {
+        res.json(data)
+    })
+})
 
 app.listen(PORT, function() {
     console.log("App running on port " + PORT);

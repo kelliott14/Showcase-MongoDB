@@ -92,3 +92,7 @@ a{
     background-color: #FFCFE8;
     margin: 0.25rem;
 }
+
+.deleteComment{
+    float: right;
+}

@@ -31,9 +31,9 @@ $(document).ready(function() {
             method: "GET",
             url: "/articles/" + id
         }).then(function(data) {
-            console.log(data);
             data.comment.forEach(function(item) {
                 var eachComment = $("<div class='eachComment'>")
+                eachComment.append("<button class='deleteComment' id=" + item._id + ">Delete</button>");
                 eachComment.append("<p>" + item.body + "</p>");
                 eachComment.append("<h4>" + item.name + "</h4>");
                 $(".currentComments").append(eachComment);
@@ -60,16 +60,45 @@ $(document).ready(function() {
                 method: "GET",
                 url: "/articles/" + id
             }).then(function(data) {
-                // data.forEach(function(item) {
-                //     var eachComment = $("<p>" + item.body + "</p>");
-                //     var eachName = $("<h4>" + item.name + "</h4>");
-                //     $(".currentComments").append(eachComment + eachName);
-                // });
+                data.comment.forEach(function(item) {
+                    var eachComment = $("<div class='eachComment'>")
+                    eachComment.append("<button class='deleteComment' id=" + item._id + ">Delete</button>");
+                    eachComment.append("<p>" + item.body + "</p>");
+                    eachComment.append("<h4>" + item.name + "</h4>");
+                    $(".currentComments").append(eachComment);
+                    $("#commenterName").val("");
+                    $("#commentText").val("");
+                });
             });
-        })
+        });
         e.preventDefault()
     });
 
+    $("body").on("click", ".deleteComment", function(){
+        var id = $(this).attr("id");
+        var articleId = $(this).parent().parent().parent();
+        articleId = articleId.children("form").attr("id")
+        $.ajax({
+            method: "DELETE",
+            url: "/comment/" + id,
+        }).then(function(results) {
+            $(".currentComments").empty();
+            $.ajax({
+                method: "GET",
+                url: "/articles/" + articleId
+            }).then(function(data) {
+                data.comment.forEach(function(item) {
+                    var eachComment = $("<div class='eachComment'>")
+                    eachComment.append("<button class='deleteComment' id=" + item._id + ">Delete</button>");
+                    eachComment.append("<p>" + item.body + "</p>");
+                    eachComment.append("<h4>" + item.name + "</h4>");
+                    $(".currentComments").append(eachComment);
+                    $("#commenterName").val("");
+                    $("#commentText").val("");
+                });
+            });
+        });
+    });
 
     
 });
