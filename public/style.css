@@ -85,3 +85,10 @@ a{
 #commenterName {
     width: 100%;
 }
+
+.eachComment{
+    border: 1px solid black;
+    padding: 0.5rem;
+    background-color: #FFCFE8;
+    margin: 0.25rem;
+}

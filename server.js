@@ -69,17 +69,17 @@ app.get("/articles/:id", function(req, res) {
         });
 });
 
-app.post("/articles/:id", function(req, res) {
+app.post("/submit/:id", function(req, res) {
     db.Comment.create(req.body).then(function(dbComment) {
-        console.log(req.body)
         console.log(dbComment)
-        return db.Article.findByIdAndUpdate(
-            {
-                _id: req.params.id
+        return db.Article.findOneAndUpdate(
+            {_id: req.params.id},
+            { $push: {
+                 comment: dbComment.id },
             },
-            { comment: dbComment.id },
-            { new: true }
+            {new: true}
         ).then(function(dbArticle) {
+            console.log(dbArticle)
             res.json(dbArticle)
         }).catch(function(err) {
             res.json(err)

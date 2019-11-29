@@ -32,11 +32,12 @@ $(document).ready(function() {
             url: "/articles/" + id
         }).then(function(data) {
             console.log(data);
-            // data.forEach(function(item) {
-            //     var eachComment = $("<p>" + item.body + "</p>");
-            //     var eachName = $("<h4>" + item.name + "</h4>");
-            //     $(".currentComments").append(eachComment + eachName);
-            // });
+            data.comment.forEach(function(item) {
+                var eachComment = $("<div class='eachComment'>")
+                eachComment.append("<p>" + item.body + "</p>");
+                eachComment.append("<h4>" + item.name + "</h4>");
+                $(".currentComments").append(eachComment);
+            });
         });
     });
 
@@ -48,7 +49,7 @@ $(document).ready(function() {
         var id = $(".commentForm").attr("id")
         $.ajax({
             method: "POST",
-            url: "/articles/" + id,
+            url: "/submit/" + id,
             data: {
                 name: $("#commenterName").val().trim(),
                 body: $("#commentText").val().trim()
@@ -59,7 +60,6 @@ $(document).ready(function() {
                 method: "GET",
                 url: "/articles/" + id
             }).then(function(data) {
-                console.log(data);
                 // data.forEach(function(item) {
                 //     var eachComment = $("<p>" + item.body + "</p>");
                 //     var eachName = $("<h4>" + item.name + "</h4>");
