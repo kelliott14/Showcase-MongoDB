@@ -30,7 +30,7 @@ Showcasing MongoDB. One page website that scrapes the satirical news site, The B
 >![media@1000](https://github.com/kelliott14/Unit-18-Homework/blob/master/readme/demo1.JPG)
 
 2. Use the `Scrape for more` to scrape new articles from the site. The page will reload after the scrape is complete, will take a few seconds. Articles are split out by favourited and unfavourited. Favourites will appear up the top in the collapsible ribbon. Use the arrows to collapse or expand the ribbon. The unfavourited articles will appear in the main page. 
-> ![media@825](https://github.com/kelliott14/Unit-18-Homework/tree/master/readme/demo2.JPG)
+> ![media@825](https://github.com/kelliott14/Unit-18-Homework/blob/master/readme/demo2.JPG)
 
 
 *Website was created as part of the ***University of Sydney's The Coding Bootcamp*** *
